@@ -24,8 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Configure Pages
-        uses: actions/configure-pages@v5
-      - name: Upload static site
+        uses: actions/configure-pages@v5`r`n        with:`r`n          enablement: true`r`n      - name: Upload static site
         uses: actions/upload-pages-artifact@v4
         with:
           path: .
