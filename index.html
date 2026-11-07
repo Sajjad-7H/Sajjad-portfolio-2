@@ -150,7 +150,7 @@
     padding: 80px 60px;
   }
   .hero-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr); gap: 64px;
     align-items: center; width: 100%;
   }
   .hero-name {
@@ -206,6 +206,35 @@
   .hero-status {
     margin-top: 40px; display: flex; align-items: center; gap: 10px;
     font-size: 0.75rem; color: var(--text2);
+  }
+  .hero-portrait-wrap {
+    position: relative; justify-self: center; width: min(100%, 390px);
+    aspect-ratio: 0.91; isolation: isolate;
+  }
+  .hero-portrait-wrap::before {
+    content: ''; position: absolute; inset: 8% -8% -5% 10%; z-index: -1;
+    border: 1px solid rgba(0,245,255,0.35); border-radius: 48% 48% 18px 18px;
+    background: radial-gradient(ellipse at 50% 45%, rgba(0,245,255,0.12), transparent 68%);
+    box-shadow: 0 0 70px rgba(0,245,255,0.1);
+  }
+  .hero-portrait {
+    display: block; width: 100%; height: 100%; object-fit: cover;
+    object-position: center 36%; border-radius: 48% 48% 18px 18px;
+    border: 1px solid rgba(0,245,255,0.42);
+    box-shadow: 0 28px 80px rgba(0,0,0,0.48), 0 0 34px rgba(0,245,255,0.12);
+  }
+  .hero-portrait-tag {
+    position: absolute; left: -28px; bottom: 28px; padding: 12px 16px;
+    display: flex; align-items: center; gap: 10px; max-width: calc(100% + 20px);
+    border: 1px solid var(--border); border-radius: 8px;
+    background: rgba(5,10,15,0.88); backdrop-filter: blur(12px);
+    color: var(--text); font: 700 0.62rem/1.4 var(--font-mono);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.35);
+  }
+  .hero-portrait-tag::before {
+    content: ''; flex: 0 0 8px; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--neon2); box-shadow: 0 0 12px var(--neon2);
   }
   .status-dot {
     width: 8px; height: 8px; border-radius: 50%;
@@ -678,6 +707,8 @@
     #home { padding: 80px 28px 60px; min-height: 100svh; }
 
     .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-portrait-wrap { width: min(72vw, 360px); }
+    .hero-portrait-tag { left: -10px; bottom: 18px; }
     .hero-name { font-size: clamp(2.8rem, 10vw, 4.5rem); }
 
     .projects-grid { grid-template-columns: repeat(2, minmax(230px, 1fr)); }
@@ -711,7 +742,8 @@
     .hero-btns { flex-direction: column; gap: 12px; }
     .btn-neon { width: 100%; justify-content: center; padding: 14px 24px; }
 
-    .code-card { display: none; }
+    .hero-portrait-wrap { width: min(78vw, 320px); margin-top: 8px; }
+    .hero-portrait-tag { left: -8px; bottom: 16px; padding: 10px 12px; font-size: 0.54rem; }
 
     .sec-heading { font-size: clamp(1.7rem, 7vw, 2.4rem); margin-bottom: 36px; }
 
@@ -1113,27 +1145,9 @@
           Available for freelance &amp; full-time roles
         </div>
       </div>
-      <div class="code-card reveal" style="transition-delay:0.2s">
-        <div class="code-topbar">
-          <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
-          <span class="code-filename">profile.js</span>
-        </div>
-        <div class="code-body"><pre><code><span class="c-kw">const</span> <span class="c-fn">sajjad</span> = {
-  <span class="c-prop">name</span>: <span class="c-str">"Sajjad Hosen Emon"</span>,
-  <span class="c-prop">role</span>: <span class="c-str">"Full-Stack Developer"</span>,
-  <span class="c-prop">stack</span>: [
-    <span class="c-str">"HTML5"</span>, <span class="c-str">"CSS3"</span>, <span class="c-str">"JavaScript"</span>,
-    <span class="c-str">"PHP"</span>, <span class="c-str">"Laravel"</span>, <span class="c-str">"MySQL"</span>,
-    <span class="c-str">"Bootstrap"</span>, <span class="c-str">"Git"</span>
-  ],
-  <span class="c-prop">location</span>: <span class="c-str">"Chittagong, Bangladesh"</span>,
-  <span class="c-prop">hireable</span>: <span class="c-kw">true</span>,
-  <span class="c-prop">openToWork</span>: <span class="c-kw">true</span>,
-
-  <span class="c-fn">greet</span>() {
-    <span class="c-kw">return</span> <span class="c-str">`Hello World! 👋`</span>;
-  }
-};</code></pre></div>
+      <div class="hero-portrait-wrap reveal" style="transition-delay:0.2s">
+        <img class="hero-portrait" src="assets/sajjad-profile.jpg" alt="Portrait of Sajjad Hosen Emon" width="250" height="250" fetchpriority="high">
+        <div class="hero-portrait-tag">Computer Science · ML Developer</div>
       </div>
     </div>
   </section>
